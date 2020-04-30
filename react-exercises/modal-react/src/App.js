@@ -5,9 +5,13 @@ import { Modal } from "./Components/Modal";
 function App() {
   return (
     <div className="App">
-     test
-     lorem lorem
-      <Modal></Modal>
+      <Modal
+        header={<div>'header'</div>}
+        body={<div>body</div>}
+        footer={<div>foot</div>}
+      >
+        <div> test</div>
+      </Modal>
     </div>
   );
 }
