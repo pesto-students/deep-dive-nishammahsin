@@ -1,7 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {Modal} from  './Modal'
+import React from "react";
+import "./App.scss";
+import { Modal } from "./Components/Modal";
 
 function App() {
   return (
