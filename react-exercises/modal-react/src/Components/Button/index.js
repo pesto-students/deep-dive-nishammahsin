@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './styles.scss';
 
 const Button = (props) => {
@@ -11,6 +12,11 @@ const Button = (props) => {
         </div>
     );
     
+};
+
+Button.propTypes = {
+    name: PropTypes.element.isRequired,
+    type: PropTypes.element.isRequired,
 };
 
 export {Button};

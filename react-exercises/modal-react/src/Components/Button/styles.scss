@@ -1,44 +1,35 @@
 @import "../../sass/global";
 
-$btn-text-color : white;
-$btn-primary-color : blue;
-$btn-secondary-color : gray;
-$btn-success-color : green;
-$btn-danger-color : red;
-$btn-warning-color : yellow;
-$btn-info-color : lightblue;
-$btn-text-padding : 0.5rem;
-
 .btn {
 
     display: flex;
     max-width: 10rem;
     max-height: 5rem;
-    color: $btn-text-color;
+    color: $white;
     cursor: pointer;
 
     &.btn-primary {
-        background-color: $btn-primary-color;
+        background-color: $primary;
     }
 
-    &.btn-secondary {
-        background-color: $btn-secondary-color;
+    &.btn-dark {
+        background-color: $dark;
     }
     
     &.btn-success {
-        background-color: $btn-success-color;
+        background-color: $success;
     }
 
     &.btn-danger {
-        background-color: $btn-danger-color;
+        background-color: $danger;
     }
 
     &.btn-warning {
-        background-color: $btn-warning-color;
+        background-color: $warning;
     }
 
     &.btn-info {
-        background-color: $btn-info-color;
+        background-color: $info;
     }
 }
 
