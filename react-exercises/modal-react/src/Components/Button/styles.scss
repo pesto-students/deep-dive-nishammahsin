@@ -1,0 +1,37 @@
+@import "../../sass/global";
+
+.btn{
+    display: flex;
+    max-width: 10rem;
+    max-height: 5rem;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-primary{
+    background-color: blue
+}
+
+.btn-secondary{
+    background-color: gray;
+}
+
+.btn-success{
+    background-color: green;
+}
+
+.btn-danger{
+    background-color: red;
+}
+
+.btn-warning{
+    background-color: yellow ;
+}
+
+.btn-info{
+    background-color: lightblue;
+}
+
+.btn-text{
+    padding: 0.5rem;
+}
