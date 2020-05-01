@@ -1,6 +1,7 @@
-import React from "react";
-import "./App.scss";
-import { Modal } from "./Components/Modal";
+import '/App.scss';
+import React from 'react';
+
+import { Modal } from './Components/Modal';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
         body={<div>body</div>}
         footer={<div>foot</div>}
       >
-        <div> test</div>
+        <div> test </div>
       </Modal>
     </div>
   );

@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./styles.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import './styles.scss';
 
 const Modal = (props) => {
   const ModalBody = () =>
     React.Children.map(props.children, (child) => {
       return React.cloneElement(child, {
-        className: "modal-body",
+        className: 'modal-body',
       });
     });
 
