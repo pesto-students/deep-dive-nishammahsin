@@ -2,7 +2,6 @@ import './App.scss';
 import React from 'react';
 
 import { Modal } from './Components/Modal';
-import { Button } from './Components/Button';
 
 function App() {
   return (
