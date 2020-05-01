@@ -21,8 +21,8 @@ const Modal = (props) => {
       props.footer
     ) : (
       <div className="modal-footer">
-        <button>{props.okText}</button>
-        <button>{props.cancelText}</button>
+        <button {...props.okButtonProps}>{props.okText}</button>
+        <button {...props.cancelButtonProps}>{props.cancelText}</button>
       </div>
     );
 
@@ -61,6 +61,8 @@ Modal.propTypes = {
   closable: PropTypes.bool,
   okText: PropTypes.string,
   cancelText: PropTypes.string,
+  okButtonProps: PropTypes.object,
+  cancelButtonProps: PropTypes.object,
 };
 
 export { Modal };
