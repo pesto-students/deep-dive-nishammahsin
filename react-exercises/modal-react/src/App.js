@@ -7,6 +7,9 @@ function App() {
   return (
     <div className="App">
       <Modal
+        size="medium"
+        bgColor="white"
+        padding="small"
         title={<h1>title</h1>}
         okText="YES"
         cancelText="Cancel"

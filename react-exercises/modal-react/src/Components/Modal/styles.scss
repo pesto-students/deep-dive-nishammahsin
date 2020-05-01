@@ -19,8 +19,37 @@
   }
   .modal {
     margin: 0 auto;
-    width: auto;
     display: inline-block;
+    border: 1px solid gray;
+    opacity: 0.9;
+    .bg-white{
+      background-color: $modal-bg-white;
+    }
+    .padding-small {
+      padding: $modal-padding-small;
+    }
+    .padding-medium {
+      padding: $modal-padding-medium;
+    }
+    .padding-large {
+      padding: $modal-padding-large;
+    }
+    .default {
+      width: $modal-default-size;
+      height: $modal-default-size;
+    }
+    .small {
+      width: $modal-size-small;
+      height: $modal-size-small;
+    }
+    .medium {
+      width: $modal-size-medium;
+      height: $modal-size-medium;
+    }
+    .large {
+      width: $modal-size-large;
+      height: $modal-size-large;
+    }
   }
   .modal-content {
     position: relative;
