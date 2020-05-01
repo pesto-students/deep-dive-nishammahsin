@@ -16,6 +16,16 @@ const Modal = (props) => {
   const CloseButton = () =>
     props.closable ? <button className="modal-close">X</button> : null;
 
+  const ModalFooter = () =>
+    props.footer ? (
+      props.footer
+    ) : (
+      <div className="modal-footer">
+        <button>{props.okText}</button>
+        <button>{props.cancelText}</button>
+      </div>
+    );
+
   return (
     <React.Fragment>
       <div className="modal-wrap">
@@ -23,10 +33,10 @@ const Modal = (props) => {
         <div className="modal">
           <div className="modal-dialog">
             <div className="modal-content">
-              {<CloseButton></CloseButton>}
-              {<ModalHeader></ModalHeader>}
+              <CloseButton></CloseButton>
+              <ModalHeader></ModalHeader>
               <ModalBody></ModalBody>
-              <div className="modal-footer">{props.footer}</div>
+              <ModalFooter></ModalFooter>
             </div>
           </div>
         </div>
@@ -37,6 +47,8 @@ const Modal = (props) => {
 
 Modal.defaultProps = {
   closable: true,
+  okText: 'OK',
+  cancelText: 'Cancel',
 };
 
 Modal.propTypes = {
@@ -45,8 +57,10 @@ Modal.propTypes = {
     PropTypes.string.isRequired,
     PropTypes.element.isRequired,
   ]),
-  footer: PropTypes.element.isRequired,
+  footer: PropTypes.element,
   closable: PropTypes.bool,
+  okText: PropTypes.string,
+  cancelText: PropTypes.string,
 };
 
 export { Modal };
