@@ -6,7 +6,21 @@ import { Modal } from './Components/Modal';
 function App() {
   return (
     <div className="App">
-      <Modal title={<h1>title</h1>} footer={<div>foot</div>}>
+      <Modal
+        title={<h1>title</h1>}
+        okText="YES"
+        cancelText="Cancel"
+        okButtonProps={{
+          onClick: () => {
+            console.log('clicked ok');
+          },
+        }}
+        cancelButtonProps={{
+          onClick: () => {
+            console.log('clicked cancel');
+          },
+        }}
+      >
         <p>modal body</p>
       </Modal>
     </div>
