@@ -1,4 +1,4 @@
-@import "../../sass/global";
+@import '../../sass/global';
 
 .modal-wrap {
   position: fixed;
@@ -22,5 +22,13 @@
     margin: 0 auto;
     width: auto;
     display: inline-block;
+  }
+  .modal-content {
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
