@@ -10,31 +10,38 @@ import {
 import './styles.scss';
 
 const Modal = (props) => {
-  const { width, styles } = props;
-  const ModalBody = () =>
-    React.Children.map(props.children, (child) => {
-      return React.cloneElement(child, {
-        className: 'modal-body',
-      });
-    });
+  const {
+    width,
+    styles,
+    title,
+    footer,
+    closable,
+    okButtonProps,
+    cancelButtonProps,
+    okText,
+    cancelText,
+    size,
+  } = props;
+
+  const ModalBody = () => <div className="modal-body">{props.children}</div>;
 
   const ModalHeader = () =>
-    props.title ? <div className="modal-header">{props.title}</div> : null;
+    title ? <div className="modal-header">{title}</div> : null;
 
   const CloseButton = () =>
-    props.closable ? <button className="modal-close">X</button> : null;
+    closable ? <button className="modal-close">X</button> : null;
 
   const ModalFooter = () =>
-    props.footer ? (
-      props.footer
+    footer ? (
+      footer
     ) : (
       <div className="modal-footer">
-        <button {...props.okButtonProps}>{props.okText}</button>
-        <button {...props.cancelButtonProps}>{props.cancelText}</button>
+        <button {...okButtonProps}>{okText}</button>
+        <button {...cancelButtonProps}>{cancelText}</button>
       </div>
     );
 
-  const modalSize = MODAL_SIZES.includes(props.size) ? props.size : '';
+  const modalSize = MODAL_SIZES.includes(size) ? size : '';
 
   const stylesheet = { ...styles, width };
 
