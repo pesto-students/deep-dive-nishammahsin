@@ -9,6 +9,10 @@ import {
 } from './constants';
 import './styles.scss';
 
+/**
+ * Modal component
+ * @component
+ */
 const Modal = (props) => {
   const {
     width,
@@ -87,21 +91,53 @@ Modal.defaultProps = {
 };
 
 Modal.propTypes = {
+  /**
+   * The modal dialog's title
+   */
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  body: PropTypes.oneOfType([
-    PropTypes.string.isRequired,
-    PropTypes.element.isRequired,
-  ]),
+  /**
+   * Footer content, ReactNode set as footer={null} when you don't need default buttons
+   */
   footer: PropTypes.element,
+  /**
+   * Whether a close (x) button is visible on top right of the modal dialog or not
+   */
   closable: PropTypes.bool,
+  /**
+   * Text of the OK button. default 'OK'
+   */
   okText: PropTypes.string,
+  /**
+   * Text of the Cancel Button. default 'CANCEL'
+   */
   cancelText: PropTypes.string,
+  /**
+   * OK button props
+   */
   okButtonProps: PropTypes.object,
+  /**
+   * Cancel button props
+   */
   cancelButtonProps: PropTypes.object,
+  /**
+   * Size of the modal .small | medium | large default is medium
+   */
   size: PropTypes.oneOf(MODAL_SIZES),
+  /**
+   * width of the modal
+   */
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * styles of the modal
+   */
   styles: PropTypes.object,
+  /**
+   * Whether the modal dialog is visible or not
+   */
   visible: PropTypes.bool,
+  /**
+   * Specify a function that will be called when a user clicks mask, close button on top right or Cancel button
+   */
   onClose: PropTypes.func,
 };
 
