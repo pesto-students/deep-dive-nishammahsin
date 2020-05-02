@@ -25,16 +25,19 @@
     border: $modal-border;
     opacity: 0.9;
     background-color: $modal-bg-color;
-    .default {
+  }
+  .modal-content {
+    position: relative;
+    &.default {
       width: $modal-default-size;
     }
-    .small {
+    &.small {
       width: $modal-size-small;
     }
-    .medium {
+    &.medium {
       width: $modal-size-medium;
     }
-    .large {
+    &.large {
       width: $modal-size-large;
     }
     .modal-header {
@@ -49,9 +52,6 @@
       min-height: $modal-min-footer;
       border-top: $modal-border;
     }
-  }
-  .modal-content {
-    position: relative;
   }
   .modal-close {
     position: absolute;
