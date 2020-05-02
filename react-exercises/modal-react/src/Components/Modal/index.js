@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  MODAL_DEFAULT_WIDTH,
+  MODAL_DEFAULT_SIZE,
+  OK_TEXT,
+  CANCEL_TEXT,
+  MODAL_SIZES,
+} from './constants';
 import './styles.scss';
 
-const MODAL_SIZES = ['small', 'medium', 'large'];
-
 const Modal = (props) => {
+  const { width, styles } = props;
   const ModalBody = () =>
     React.Children.map(props.children, (child) => {
       return React.cloneElement(child, {
@@ -30,13 +36,15 @@ const Modal = (props) => {
 
   const modalSize = MODAL_SIZES.includes(props.size) ? props.size : '';
 
+  const stylesheet = { ...styles, width };
+
   return (
     <React.Fragment>
       <div className="modal-wrap">
         <div className="modal-mask"></div>
         <div className="modal">
           <div className="modal-dialog">
-            <div className={`modal-content ${modalSize}`}>
+            <div className={`modal-content ${modalSize}`} style={stylesheet}>
               <CloseButton></CloseButton>
               <ModalHeader></ModalHeader>
               <ModalBody></ModalBody>
@@ -51,9 +59,11 @@ const Modal = (props) => {
 
 Modal.defaultProps = {
   closable: true,
-  okText: 'OK',
-  cancelText: 'Cancel',
-  size: 'medium',
+  okText: OK_TEXT,
+  cancelText: CANCEL_TEXT,
+  size: MODAL_DEFAULT_SIZE,
+  width: MODAL_DEFAULT_WIDTH,
+  styles: {},
 };
 
 Modal.propTypes = {
@@ -69,6 +79,8 @@ Modal.propTypes = {
   okButtonProps: PropTypes.object,
   cancelButtonProps: PropTypes.object,
   size: PropTypes.oneOf(MODAL_SIZES),
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  styles: PropTypes.object,
 };
 
 export { Modal };
