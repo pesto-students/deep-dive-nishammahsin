@@ -21,10 +21,9 @@ const Modal = (props) => {
     okText,
     cancelText,
     size,
-    visible,
   } = props;
 
-  const [visible, setVisible] = useState(visible);
+  const [visible, setVisible] = useState(props.visible);
 
   const onClose = () => {
     setVisible(false);
@@ -58,19 +57,21 @@ const Modal = (props) => {
 
   return (
     <React.Fragment>
-      <div className="modal-wrap">
-        <div className="modal-mask"></div>
-        <div className="modal">
-          <div className="modal-dialog">
-            <div className={`modal-content ${modalSize}`} style={stylesheet}>
-              <CloseButton></CloseButton>
-              <ModalHeader></ModalHeader>
-              <ModalBody></ModalBody>
-              <ModalFooter></ModalFooter>
+      {visible ? (
+        <div className="modal-wrap">
+          <div className="modal-mask"></div>
+          <div className="modal">
+            <div className="modal-dialog">
+              <div className={`modal-content ${modalSize}`} style={stylesheet}>
+                <CloseButton></CloseButton>
+                <ModalHeader></ModalHeader>
+                <ModalBody></ModalBody>
+                <ModalFooter></ModalFooter>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </React.Fragment>
   );
 };
