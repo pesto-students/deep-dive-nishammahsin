@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 const MODAL_SIZES = ['small', 'medium', 'large'];
-const MODAL_DEFAULT_SIZE = 'default';
 
-const Modal = props => {
+const Modal = (props) => {
   const ModalBody = () =>
-    React.Children.map(props.children, child => {
+    React.Children.map(props.children, (child) => {
       return React.cloneElement(child, {
         className: 'modal-body',
       });
@@ -29,15 +28,13 @@ const Modal = props => {
       </div>
     );
 
-  const modalSize = MODAL_SIZES.includes(props.size)
-    ? props.size
-    : MODAL_DEFAULT_SIZE;
+  const modalSize = MODAL_SIZES.includes(props.size) ? props.size : '';
 
   return (
     <React.Fragment>
       <div className="modal-wrap">
         <div className="modal-mask"></div>
-        <div className={`modal`}>
+        <div className="modal">
           <div className="modal-dialog">
             <div className={`modal-content ${modalSize}`}>
               <CloseButton></CloseButton>
@@ -71,7 +68,7 @@ Modal.propTypes = {
   cancelText: PropTypes.string,
   okButtonProps: PropTypes.object,
   cancelButtonProps: PropTypes.object,
-  size: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(MODAL_SIZES)]),
+  size: PropTypes.oneOf(MODAL_SIZES),
 };
 
 export { Modal };
