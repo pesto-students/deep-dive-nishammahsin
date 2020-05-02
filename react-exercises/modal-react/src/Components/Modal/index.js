@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   MODAL_DEFAULT_WIDTH,
@@ -21,7 +21,14 @@ const Modal = (props) => {
     okText,
     cancelText,
     size,
+    visible,
   } = props;
+
+  const [visible, setVisible] = useState(visible);
+
+  const onClose = () => {
+    setVisible(false);
+  };
 
   const ModalBody = () => <div className="modal-body">{props.children}</div>;
 
@@ -29,7 +36,11 @@ const Modal = (props) => {
     title ? <div className="modal-header">{title}</div> : null;
 
   const CloseButton = () =>
-    closable ? <button className="modal-close">X</button> : null;
+    closable ? (
+      <button className="modal-close" onClick={onClose}>
+        X
+      </button>
+    ) : null;
 
   const ModalFooter = () =>
     footer ? (
@@ -71,6 +82,7 @@ Modal.defaultProps = {
   size: MODAL_DEFAULT_SIZE,
   width: MODAL_DEFAULT_WIDTH,
   styles: {},
+  visible: false,
 };
 
 Modal.propTypes = {
@@ -88,6 +100,8 @@ Modal.propTypes = {
   size: PropTypes.oneOf(MODAL_SIZES),
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   styles: PropTypes.object,
+  visible: PropTypes.bool,
+  onClose: PropTypes.func,
 };
 
 export { Modal };
