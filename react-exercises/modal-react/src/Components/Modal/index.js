@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const MODAL_SIZES = ['small','medium','large'];
+const MODAL_SIZES = ['small', 'medium', 'large'];
 const MODAL_DEFAULT_SIZE = 'default';
 
-const Modal = (props) => {
+const Modal = props => {
   const ModalBody = () =>
-    React.Children.map(props.children, (child) => {
+    React.Children.map(props.children, child => {
       return React.cloneElement(child, {
         className: 'modal-body',
       });
@@ -29,9 +29,9 @@ const Modal = (props) => {
       </div>
     );
 
-  const modalSize = MODAL_SIZES.includes(props.size) ? props.size : MODAL_DEFAULT_SIZE;
-
-  const modalPadding = MODAL_SIZES.includes(props.padding) ? `padding-${props.padding}` : 'padding-small';
+  const modalSize = MODAL_SIZES.includes(props.size)
+    ? props.size
+    : MODAL_DEFAULT_SIZE;
 
   return (
     <React.Fragment>
@@ -39,12 +39,12 @@ const Modal = (props) => {
         <div className="modal-mask"></div>
         <div className={`modal`}>
           <div className="modal-dialog">
-            <div className={`modal-content ${modalSize} ${modalPadding} bg-${props.bgColor}`}>
+            <div className={`modal-content ${modalSize}`}>
               <CloseButton></CloseButton>
               <ModalHeader></ModalHeader>
               <ModalBody></ModalBody>
               <ModalFooter></ModalFooter>
-            </div>size
+            </div>
           </div>
         </div>
       </div>
@@ -57,8 +57,6 @@ Modal.defaultProps = {
   okText: 'OK',
   cancelText: 'Cancel',
   size: 'medium',
-  bgColor: 'white',
-  padding: 'small'
 };
 
 Modal.propTypes = {
@@ -73,9 +71,7 @@ Modal.propTypes = {
   cancelText: PropTypes.string,
   okButtonProps: PropTypes.object,
   cancelButtonProps: PropTypes.object,
-  size: PropTypes.string,
-  bgColor: PropTypes.string,
-  padding: PropTypes.string
+  size: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(MODAL_SIZES)]),
 };
 
 export { Modal };
