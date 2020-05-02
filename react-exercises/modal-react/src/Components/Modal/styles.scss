@@ -22,7 +22,7 @@
     height: auto;
     display: inline-block;
     padding: $modal-padding;
-    border: 1px solid gray;
+    border: $modal-border;
     opacity: 0.9;
     background-color: $modal-bg-color;
     .default {
@@ -36,6 +36,18 @@
     }
     .large {
       width: $modal-size-large;
+    }
+    .modal-header {
+      min-height: $modal-min-header;
+      border-bottom: $modal-border;
+    }
+    .modal-body {
+      min-height: $modal-min-body;
+      max-height: $modal-body-max;
+    }
+    .modal-footer {
+      min-height: $modal-min-footer;
+      border-top: $modal-border;
     }
   }
   .modal-content {
