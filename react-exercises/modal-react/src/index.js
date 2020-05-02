@@ -1,11 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
+import { Modal } from './Components/Modal';
+import { Button } from './Components/Button';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+export { Modal, Button };

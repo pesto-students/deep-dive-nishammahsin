@@ -1,54 +1,89 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import {
+  MODAL_DEFAULT_WIDTH,
+  MODAL_DEFAULT_SIZE,
+  OK_TEXT,
+  CANCEL_TEXT,
+  MODAL_SIZES,
+} from './constants';
 import './styles.scss';
 
 const Modal = (props) => {
-  const ModalBody = () =>
-    React.Children.map(props.children, (child) => {
-      return React.cloneElement(child, {
-        className: 'modal-body',
-      });
-    });
+  const {
+    width,
+    styles,
+    title,
+    footer,
+    closable,
+    okButtonProps,
+    cancelButtonProps,
+    okText,
+    cancelText,
+    size,
+  } = props;
+
+  const [visible, setVisible] = useState(props.visible);
+
+  const onClose = () => {
+    setVisible(false);
+  };
+
+  const ModalBody = () => <div className="modal-body">{props.children}</div>;
 
   const ModalHeader = () =>
-    props.title ? <div className="modal-header">{props.title}</div> : null;
+    title ? <div className="modal-header">{title}</div> : null;
 
   const CloseButton = () =>
-    props.closable ? <button className="modal-close">X</button> : null;
+    closable ? (
+      <button className="modal-close" onClick={onClose}>
+        X
+      </button>
+    ) : null;
 
   const ModalFooter = () =>
-    props.footer ? (
-      props.footer
+    footer ? (
+      footer
     ) : (
       <div className="modal-footer">
-        <button {...props.okButtonProps}>{props.okText}</button>
-        <button {...props.cancelButtonProps}>{props.cancelText}</button>
+        <button {...okButtonProps}>{okText}</button>
+        <button {...cancelButtonProps}>{cancelText}</button>
       </div>
     );
 
+  const modalSize = MODAL_SIZES.includes(size) ? size : '';
+
+  const stylesheet = { ...styles, width };
+
   return (
     <React.Fragment>
-      <div className="modal-wrap">
-        <div className="modal-mask"></div>
-        <div className="modal">
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <CloseButton></CloseButton>
-              <ModalHeader></ModalHeader>
-              <ModalBody></ModalBody>
-              <ModalFooter></ModalFooter>
+      {visible ? (
+        <div className="modal-wrap">
+          <div className="modal-mask"></div>
+          <div className="modal">
+            <div className="modal-dialog">
+              <div className={`modal-content ${modalSize}`} style={stylesheet}>
+                <CloseButton></CloseButton>
+                <ModalHeader></ModalHeader>
+                <ModalBody></ModalBody>
+                <ModalFooter></ModalFooter>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </React.Fragment>
   );
 };
 
 Modal.defaultProps = {
   closable: true,
-  okText: 'OK',
-  cancelText: 'Cancel',
+  okText: OK_TEXT,
+  cancelText: CANCEL_TEXT,
+  size: MODAL_DEFAULT_SIZE,
+  width: MODAL_DEFAULT_WIDTH,
+  styles: {},
+  visible: false,
 };
 
 Modal.propTypes = {
@@ -63,6 +98,11 @@ Modal.propTypes = {
   cancelText: PropTypes.string,
   okButtonProps: PropTypes.object,
   cancelButtonProps: PropTypes.object,
+  size: PropTypes.oneOf(MODAL_SIZES),
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  styles: PropTypes.object,
+  visible: PropTypes.bool,
+  onClose: PropTypes.func,
 };
 
 export { Modal };
