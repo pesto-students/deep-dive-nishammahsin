@@ -1,10 +1,10 @@
+const  SimpleServer  = require('./lib/SimpleServer');
+const  Person  = require('./Person');
 
-/*
- Demo page how we can use the API
-*/
-// Somename __middleware 
-// swagger
-// const p = new Person();
-// somename.routers = [new User(), new Employee, p]
+const app = new SimpleServer();
+const PORT = 2022;
 
-//somename.startServer();
+const person = new Person('/');
+app.Routes = [person];
+
+app.startServer(PORT,()=> {console.log(`server running on ${PORT}`)});
