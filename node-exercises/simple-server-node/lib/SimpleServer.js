@@ -1,36 +1,53 @@
 /*
- creating and roting the hhtp server
+ creating and routing the http server
 */
 
 const http = require('http');
+const {URL} = require('url');
+
 class SimpleServer {
   constructor() {
     this.server = http.createServer(this.requestListener);
   }
   static Routes = [];
   requestListener = (req, res) => {
-    console.log(req.url, '--url', req.method, '----routes: ', this.Routes);
+    
+    const url = req.headers.host + req.url;
 
-    console.log(this.Routes[0].getPath());
-    // TODO
-    // get the request url
-    // find the index in the routs
+    const urlParts = new URL(url);
+    const pathname = {urlParts};
+
+    let pathIndex = 0;
+    for(let index = 0; index < this.Routes.length; index++) {
+      if(this.Routes[index].path === pathname) {
+        pathIndex = index;
+        break;
+      }
+    }
+    // TODO handle path not found
 
     if (req.method === 'GET') {
-      res.writeHead(200);
-      res.end(this.Routes[0]._get(req));
+      //res.end(this.Routes[pathIndex]._get(req));
+      this.Routes[pathIndex]._get(req, res);
+
     } else if (req.method === 'DELETE') {
-      res.end(this.Routes[0]._delete(req));
+
+      res.end(this.Routes[pathIndex]._delete(req));
+
     } else if (req.method === 'POST') {
+
       req.on('data', (chunk) => {
         console.log(chunk.toString(), '---body');
-        res.end(this.Routes[0]._post(chunk.toString(), req));
+        res.end(this.Routes[pathIndex]._post(chunk.toString(), req));
       });
+
     } else if (req.method === 'PUT') {
+
       req.on('data', (chunk) => {
         console.log(chunk.toString(), '---body');
-        res.end(this.Routes[0]._put(chunk.toString(), req));
+        res.end(this.Routes[pathIndex]._put(chunk.toString(), req));
       });
+
     }
   };
 
