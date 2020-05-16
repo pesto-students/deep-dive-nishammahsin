@@ -10,7 +10,7 @@ class SimpleServer {
     this.server = http.createServer(this.requestListener);
   }
   static Routes = [];
-  
+
   requestListener = (req, res) => {
     const url = req.headers.host + req.url;
 
@@ -26,6 +26,12 @@ class SimpleServer {
         break;
       }
     }
+
+    if(pathname.urlParts.pathname.indexOf(':') > -1) {
+      const pathParam = pathname.urlParts.pathname.split(':')[1];
+      req['pathParam'] = pathParam;
+    }
+    
     // TODO handle path not found
 
     if (req.method === 'GET') {
