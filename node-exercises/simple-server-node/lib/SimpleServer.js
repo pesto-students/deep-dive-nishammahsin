@@ -45,13 +45,15 @@ class SimpleServer {
     } else if (req.method === 'POST') {
 
       req.on('data', (chunk) => {
-        this.Routes[pathIndex]._post(chunk.toString(), req);
+        req.body = chunk.toString();
+        this.Routes[pathIndex]._post(req, res);
       });
 
     } else if (req.method === 'PUT') {
 
       req.on('data', (chunk) => {
-        this.Routes[pathIndex]._put(chunk.toString(), req);
+        req.body = chunk.toString();
+        this.Routes[pathIndex]._put(req, res);
       });
 
     }

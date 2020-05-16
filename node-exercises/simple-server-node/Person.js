@@ -1,24 +1,19 @@
-class Person {
-  constructor(path) {
-    this.path = path;
-  }
-  getPath() {
-    return this.path;
-  }
+const Router = require('./lib/Router');
+
+class Person extends Router{
   _get(req, res) {
-    //res.writeHead(500).end();
-    res.end(`bla bla person ${req}\n`);
+    res.end(`get person ${req}\n`);
   }
-  _post(body, req) {
-     return `this is post ${body}`
-  }
-
-  _put(body, req) {
-   return `this is put ${body}`
+  _post(req, res) {
+    res.end(`post person ${req}\n`);
   }
 
-  _delete(req) {
-    return `this is delete`
+  _put(req, res) {
+    res.end(`put person ${req}\n`);
+  }
+
+  _delete(req, res) {
+    res.end(`delete person ${req}\n`);
   }
 }
 
