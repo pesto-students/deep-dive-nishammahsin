@@ -10,16 +10,18 @@ class SimpleServer {
     this.server = http.createServer(this.requestListener);
   }
   static Routes = [];
+  
   requestListener = (req, res) => {
-    
     const url = req.headers.host + req.url;
 
     const urlParts = new URL(url);
     const pathname = {urlParts};
 
-    let pathIndex = 0;
+    let pathIndex = -1;
+    
     for(let index = 0; index < this.Routes.length; index++) {
-      if(this.Routes[index].path === pathname) {
+      const splitPath = pathname.urlParts.pathname.split('/');
+      if (splitPath.includes(this.Routes[index].path)) {
         pathIndex = index;
         break;
       }
@@ -32,20 +34,18 @@ class SimpleServer {
 
     } else if (req.method === 'DELETE') {
 
-      res.end(this.Routes[pathIndex]._delete(req));
+      this.Routes[pathIndex]._delete(req, res);
 
     } else if (req.method === 'POST') {
 
       req.on('data', (chunk) => {
-        console.log(chunk.toString(), '---body');
-        res.end(this.Routes[pathIndex]._post(chunk.toString(), req));
+        this.Routes[pathIndex]._post(chunk.toString(), req);
       });
 
     } else if (req.method === 'PUT') {
 
       req.on('data', (chunk) => {
-        console.log(chunk.toString(), '---body');
-        res.end(this.Routes[pathIndex]._put(chunk.toString(), req));
+        this.Routes[pathIndex]._put(chunk.toString(), req);
       });
 
     }

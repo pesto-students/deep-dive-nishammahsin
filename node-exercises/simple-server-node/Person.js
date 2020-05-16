@@ -6,8 +6,8 @@ class Person {
     return this.path;
   }
   _get(req, res) {
-    res.writeHead(500).end();
-    //res.end(`bla bla person \n`);
+    //res.writeHead(500).end();
+    res.end(`bla bla person ${req}\n`);
   }
   _post(body, req) {
      return `this is post ${body}`

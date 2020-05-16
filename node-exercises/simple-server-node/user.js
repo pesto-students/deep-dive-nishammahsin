@@ -5,8 +5,8 @@ class User {
     getPath() {
       return this.path;
     }
-    _get(req) {
-      return 'bla bla user \n';
+    _get(req, res) {
+      res.end(`bla bla user \n`);
     }
     _post(body, req) {
        return `this is user post ${body}`
