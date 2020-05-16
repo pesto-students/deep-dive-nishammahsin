@@ -27,13 +27,13 @@ class SimpleServer {
       }
     }
 
-    if(pathname.urlParts.pathname.indexOf(':') > -1) {
+    if (pathname.urlParts.pathname.indexOf(':') > -1) {
       const pathParam = pathname.urlParts.pathname.split(':')[1];
       req['pathParam'] = pathParam;
     }
-    
-    // TODO handle path not found
 
+    req['searchParams'] = pathname.urlParts.searchParams;
+    
     if (req.method === 'GET') {
       //res.end(this.Routes[pathIndex]._get(req));
       this.Routes[pathIndex]._get(req, res);
